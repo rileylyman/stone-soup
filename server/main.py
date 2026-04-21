@@ -1,6 +1,5 @@
 import time
 import uuid
-from typing import List
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
@@ -11,7 +10,7 @@ IMAGE_TTL_SECONDS = 300  # 5 minutes
 
 
 class GodotImage(BaseModel):
-    data: List[int]  # PackedByteArray serializes to array of ints in JSON
+    data: list[int]  # PackedByteArray serializes to array of ints in JSON
     format: str
     height: int
     mipmaps: bool
@@ -19,7 +18,7 @@ class GodotImage(BaseModel):
 
 
 class StoredImage:
-    def __init__(self, image: GodotImage):
+    def __init__(self, image: GodotImage) -> None:
         self.id = str(uuid.uuid4())
         self.image = image
         self.created_at = time.monotonic()
@@ -37,7 +36,7 @@ def _purge_expired() -> None:
 
 
 @app.post("/images", status_code=201)
-def post_image(image: GodotImage):
+def post_image(image: GodotImage) -> dict[str, str]:
     _purge_expired()
     stored = StoredImage(image)
     _images[stored.id] = stored
@@ -45,10 +44,10 @@ def post_image(image: GodotImage):
 
 
 @app.get("/images")
-def get_images():
+def get_images() -> list[dict[str, object]]:
     _purge_expired()
     now = time.monotonic()
-    result = []
+    result: list[dict[str, object]] = []
     for stored in _images.values():
         remaining = stored.expires_at - now
         pct_remaining = round(max(0.0, remaining / IMAGE_TTL_SECONDS * 100), 2)
@@ -65,7 +64,7 @@ def get_images():
 
 
 @app.get("/images/{image_id}")
-def get_image(image_id: str):
+def get_image(image_id: str) -> dict[str, object]:
     _purge_expired()
     stored = _images.get(image_id)
     if stored is None:
