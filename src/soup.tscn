@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bc84fxqms5cfg"]
 
 [ext_resource type="Texture2D" uid="uid://cqsdfl4hshnt" path="res://sprites/SoupBg.png" id="1_x1lg4"]
+[ext_resource type="PackedScene" uid="uid://dp8gs6bl1hi6k" path="res://src/food_manager.tscn" id="2_aueg5"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x1lg4"]
 load_path = "res://.godot/imported/NewCanvas2.png-ca79b67a4ebb45bbba54676acc721196.ctex"
@@ -26,3 +27,5 @@ centered = false
 position = Vector2(40, 80)
 texture = ExtResource("1_x1lg4")
 centered = false
+
+[node name="FoodManager" parent="." unique_id=1773176010 instance=ExtResource("2_aueg5")]

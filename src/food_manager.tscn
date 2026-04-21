@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dp8gs6bl1hi6k"]
+
+[ext_resource type="Script" uid="uid://2xkjpe651u61" path="res://src/food_manager.gd" id="1_chd38"]
+[ext_resource type="PackedScene" uid="uid://d0bdp80kskqy3" path="res://src/food.tscn" id="2_vbssh"]
+
+[sub_resource type="Curve2D" id="Curve2D_chd38"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 62, 57, 0, 0, 0, 0, 124, 33, 0, 0, 0, 0, 230, 30, 0, 0, 0, 0, 303, 45, 0, 0, 0, 0, 355, 103, 0, 0, 0, 0, 368, 185, 0, 0, 0, 0, 361, 227, 0, 0, 0, 0, 327, 274, 0, 0, 0, 0, 220, 280, 0, 0, 0, 0, 136, 280, 0, 0, 0, 0, 63, 251, 0, 0, 0, 0, 24, 194, 0, 0, 0, 0, 17, 119, 0, 0, 0, 0, 62, 57)
+}
+point_count = 14
+
+[sub_resource type="Curve2D" id="Curve2D_vbssh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 165, 67, 0, 0, 0, 0, 116, 111, 0, 0, 0, 0, 70, 164, 0, 0, 0, 0, 51, 199, 0, 0, 0, 0, 45, 247, 0, 0, 0, 0, 61, 277, 0, 0, 0, 0, 106, 286, 0, 0, 0, 0, 160, 270, 0, 0, 0, 0, 232, 222, 0, 0, 0, 0, 269, 191, 0, 0, 0, 0, 324, 145, 0, 0, 0, 0, 361, 94, 0, 0, 0, 0, 365, 58, 0, 0, 0, 0, 350, 29, 0, 0, 0, 0, 312, 15, 0, 0, 0, 0, 252, 22, 0, 0, 0, 0, 180, 53, 0, 0, 0, 0, 165, 67)
+}
+point_count = 18
+
+[sub_resource type="Curve2D" id="Curve2D_3e814"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 60, 26, 0, 0, 0, 0, 121, 20, 0, 0, 0, 0, 172, 29, 0, 0, 0, 0, 230, 60, 0, 0, 0, 0, 245, 75, 0, 0, 0, 0, 275, 113, 0, 0, 0, 0, 314, 172, 0, 0, 0, 0, 329, 242, 0, 0, 0, 0, 325, 285, 0, 0, 0, 0, 309, 295, 0, 0, 0, 0, 234, 288, 0, 0, 0, 0, 160, 241, 0, 0, 0, 0, 125, 207, 0, 0, 0, 0, 68, 157, 0, 0, 0, 0, 42, 118, 0, 0, 0, 0, 32, 88, 0, 0, 0, 0, 31, 49, 0, 0, 0, 0, 60, 26)
+}
+point_count = 18
+
+[node name="FoodManager" type="Node2D" unique_id=1773176010]
+script = ExtResource("1_chd38")
+
+[node name="Paths" type="Node2D" parent="." unique_id=432805766]
+
+[node name="Path2D_0" type="Path2D" parent="Paths" unique_id=861330670]
+curve = SubResource("Curve2D_chd38")
+
+[node name="Food" parent="Paths/Path2D_0" unique_id=1602452973 instance=ExtResource("2_vbssh")]
+position = Vector2(62, 57)
+rotation = -0.36933368
+
+[node name="Path2D_1" type="Path2D" parent="Paths" unique_id=402180033]
+curve = SubResource("Curve2D_vbssh")
+
+[node name="Path2D_2" type="Path2D" parent="Paths" unique_id=1625766534]
+curve = SubResource("Curve2D_3e814")
