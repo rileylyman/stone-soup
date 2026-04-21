@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bw8i0x82w2lgp"]
+
+[ext_resource type="Script" uid="uid://c3fys6g6c0cua" path="res://src/palette_option.gd" id="1_icmaq"]
+
+[node name="PaletteOption" type="ColorRect" unique_id=1861349469]
+custom_minimum_size = Vector2(30, 30)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.58, 0.56376, 0.4582, 1)
+script = ExtResource("1_icmaq")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=66382392]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="Color" type="ColorRect" parent="MarginContainer" unique_id=1943826870]
+layout_mode = 2
+mouse_filter = 2
+color = Color(1, 0.26, 0.26, 1)
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

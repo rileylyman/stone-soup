@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://dwhgc8fntbe0f"]
+
+[ext_resource type="PackedScene" uid="uid://bw8i0x82w2lgp" path="res://src/palette_option.tscn" id="1_25yfo"]
+[ext_resource type="Script" uid="uid://baddi2tc4ufku" path="res://src/doodle.gd" id="1_87kse"]
+[ext_resource type="Script" uid="uid://ceofamhvrn1t8" path="res://src/palette.gd" id="2_xumdc"]
+[ext_resource type="Script" uid="uid://ciyu14jyf0602" path="res://src/send_to_server_button.gd" id="4_m7nh1"]
+
+[node name="Doodle" type="Control" unique_id=171411030]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_87kse")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1113475981]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1254902, 0.38039216, 0.42352942, 1)
+
+[node name="Canvas" type="TextureRect" parent="." unique_id=1670553154]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Palette" type="HBoxContainer" parent="." unique_id=781772195]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -146.0
+offset_top = -40.0
+offset_right = -14.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+script = ExtResource("2_xumdc")
+
+[node name="PaletteOption" parent="Palette" unique_id=1861349469 instance=ExtResource("1_25yfo")]
+layout_mode = 2
+
+[node name="PaletteOption2" parent="Palette" unique_id=1084531449 instance=ExtResource("1_25yfo")]
+layout_mode = 2
+
+[node name="PaletteOption3" parent="Palette" unique_id=1904627473 instance=ExtResource("1_25yfo")]
+layout_mode = 2
+
+[node name="PaletteOption4" parent="Palette" unique_id=818350196 instance=ExtResource("1_25yfo")]
+layout_mode = 2
+
+[node name="PaletteOption5" parent="Palette" unique_id=262485614 instance=ExtResource("1_25yfo")]
+layout_mode = 2
+
+[node name="PaletteOption6" parent="Palette" unique_id=748127583 instance=ExtResource("1_25yfo")]
+layout_mode = 2
+
+[node name="PaletteOption7" parent="Palette" unique_id=155177659 instance=ExtResource("1_25yfo")]
+layout_mode = 2
+
+[node name="PaletteOption8" parent="Palette" unique_id=79304735 instance=ExtResource("1_25yfo")]
+layout_mode = 2
+
+[node name="SendToServer" type="Button" parent="." unique_id=234444630]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Send To Server"
+script = ExtResource("4_m7nh1")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="SendToServer" unique_id=1541941326]
+
+[connection signal="color_selected" from="Palette" to="." method="_on_palette_color_selected"]
+[connection signal="pressed" from="SendToServer" to="SendToServer" method="_on_pressed"]

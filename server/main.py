@@ -37,6 +37,7 @@ def _purge_expired() -> None:
 
 @app.post("/images", status_code=201)
 def post_image(image: GodotImage) -> dict[str, str]:
+    print(image)
     _purge_expired()
     stored = StoredImage(image)
     _images[stored.id] = stored
