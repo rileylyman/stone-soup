@@ -13,7 +13,7 @@ config_version=5
 config/name="stone-soup"
 run/main_scene="uid://bc84fxqms5cfg"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dbvkk3a0e8c16"
 
 [display]
 
@@ -22,6 +22,10 @@ window/size/viewport_height=320
 window/size/window_width_override=800
 window/size/window_height_override=640
 window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="stone-soup"
 
 [input]
 
