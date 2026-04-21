@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bc84fxqms5cfg"]
+
+[ext_resource type="Texture2D" uid="uid://cqsdfl4hshnt" path="res://sprites/SoupBg.png" id="1_x1lg4"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x1lg4"]
+load_path = "res://.godot/imported/NewCanvas2.png-ca79b67a4ebb45bbba54676acc721196.ctex"
+
+[node name="Soup" type="Node2D" unique_id=1061233511]
+
+[node name="Background" type="ColorRect" parent="." unique_id=467807278]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 400.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.24543518, 0.4556377, 0.29821578, 1)
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=438213264]
+visible = false
+texture = SubResource("CompressedTexture2D_x1lg4")
+centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=820327118]
+position = Vector2(40, 80)
+texture = ExtResource("1_x1lg4")
+centered = false
