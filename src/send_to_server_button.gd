@@ -5,6 +5,5 @@ extends Button
 
 func _on_pressed() -> void:
 	var image: Image = get_parent().get_image()
-	var data = JSON.stringify(image.data)
-
-	http_request.request("http://localhost:8000/images", ["Content-Type: application/json"], HTTPClient.METHOD_POST, data)
+	var png_bytes: PackedByteArray = image.save_png_to_buffer()
+	http_request.request_raw("http://localhost:8000/images", ["Content-Type: image/png"], HTTPClient.METHOD_POST, png_bytes)

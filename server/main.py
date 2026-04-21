@@ -1,26 +1,18 @@
 import time
 import uuid
 
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import Response
 
 app = FastAPI()
 
 IMAGE_TTL_SECONDS = 300  # 5 minutes
 
 
-class GodotImage(BaseModel):
-    data: list[int]  # PackedByteArray serializes to array of ints in JSON
-    format: str
-    height: int
-    mipmaps: bool
-    width: int
-
-
 class StoredImage:
-    def __init__(self, image: GodotImage) -> None:
+    def __init__(self, png_bytes: bytes) -> None:
         self.id = str(uuid.uuid4())
-        self.image = image
+        self.png_bytes = png_bytes
         self.created_at = time.monotonic()
         self.expires_at = self.created_at + IMAGE_TTL_SECONDS
 
@@ -36,10 +28,10 @@ def _purge_expired() -> None:
 
 
 @app.post("/images", status_code=201)
-def post_image(image: GodotImage) -> dict[str, str]:
-    print(image)
+async def post_image(request: Request) -> dict[str, str]:
     _purge_expired()
-    stored = StoredImage(image)
+    png_bytes = await request.body()
+    stored = StoredImage(png_bytes)
     _images[stored.id] = stored
     return {"id": stored.id}
 
@@ -48,37 +40,16 @@ def post_image(image: GodotImage) -> dict[str, str]:
 def get_images() -> list[dict[str, object]]:
     _purge_expired()
     now = time.monotonic()
-    result: list[dict[str, object]] = []
-    for stored in _images.values():
-        remaining = stored.expires_at - now
-        pct_remaining = round(max(0.0, remaining / IMAGE_TTL_SECONDS * 100), 2)
-        result.append({
-            "id": stored.id,
-            "data": stored.image.data,
-            "format": stored.image.format,
-            "height": stored.image.height,
-            "mipmaps": stored.image.mipmaps,
-            "width": stored.image.width,
-            "time_remaining_pct": pct_remaining,
-        })
-    return result
+    return [
+        {"id": s.id, "time_remaining_pct": round(max(0.0, (s.expires_at - now) / IMAGE_TTL_SECONDS * 100), 2)}
+        for s in _images.values()
+    ]
 
 
 @app.get("/images/{image_id}")
-def get_image(image_id: str) -> dict[str, object]:
+def get_image(image_id: str) -> Response:
     _purge_expired()
     stored = _images.get(image_id)
     if stored is None:
         raise HTTPException(status_code=404, detail="Image not found or expired")
-    now = time.monotonic()
-    remaining = stored.expires_at - now
-    pct_remaining = round(max(0.0, remaining / IMAGE_TTL_SECONDS * 100), 2)
-    return {
-        "id": stored.id,
-        "data": stored.image.data,
-        "format": stored.image.format,
-        "height": stored.image.height,
-        "mipmaps": stored.image.mipmaps,
-        "width": stored.image.width,
-        "time_remaining_pct": pct_remaining,
-    }
+    return Response(content=stored.png_bytes, media_type="image/png")
