@@ -8,3 +8,4 @@ python/.venv/
 **/__pycache__
 **/*.blend[1-9]
 /wiki/site/
+server/.venv/
