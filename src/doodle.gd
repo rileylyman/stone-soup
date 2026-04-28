@@ -3,20 +3,21 @@ extends Control
 var _color: Color = Color(0, 0, 0)
 @onready var canvas: TextureRect = $Canvas
 
-var data_size_x: int
-var data_size_y: int
+var data_size_x: int = 64
+var data_size_y: int = 64
 var data: Array[int]
+
+@onready var scale_x: float = canvas.size.x / data_size_x
+@onready var scale_y: float = canvas.size.x / data_size_x
 
 var brush_size: int = 5
 
 func _ready() -> void:
-	data_size_x = int(canvas.size.x)
-	data_size_y = int(canvas.size.y)
 	for i in range(data_size_x * data_size_y):
 		data.append(0)
 		data.append(0)
 		data.append(0)
-		data.append(0)
+		data.append(1)
 	_update_canvas()
 
 func _process(_delta: float) -> void:
@@ -51,11 +52,11 @@ func _update_canvas() -> void:
 
 func _get_canvas_mouse_x():
 	var mouse_pos := canvas.get_local_mouse_position() / canvas.size
-	return int(mouse_pos.x * canvas.size.x)
+	return int(mouse_pos.x * canvas.size.x / scale_x)
 
 func _get_canvas_mouse_y():
 	var mouse_pos := canvas.get_local_mouse_position() / canvas.size
-	return int(mouse_pos.y * canvas.size.y)
+	return int(mouse_pos.y * canvas.size.y / scale_y)
 
 func _on_palette_color_selected(color: Color) -> void:
 	_color = color
