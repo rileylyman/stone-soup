@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b4sk1gbqwb1be"]
+
+[ext_resource type="Texture2D" uid="uid://4o1ww54vaeuw" path="res://sprites/ColorOutlineChecked.png" id="1_j560v"]
+[ext_resource type="Texture2D" uid="uid://dyaehiy1i3usa" path="res://sprites/ColorOutline.png" id="1_uv1o1"]
+[ext_resource type="Script" uid="uid://7mw0on7pbk1r" path="res://src/palette_button.gd" id="3_3plfw"]
+
+[node name="PaletteButton" type="CheckButton" unique_id=1950895568 groups=["PaletteButtons"]]
+offset_right = 40.0
+offset_bottom = 36.0
+size_flags_horizontal = 6
+mouse_default_cursor_shape = 2
+theme_override_icons/checked = ExtResource("1_j560v")
+theme_override_icons/unchecked = ExtResource("1_uv1o1")
+script = ExtResource("3_3plfw")
+color = Color(0.60926974, 0.6188993, 0.8727843, 1)
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1748354094]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 11.0
+offset_top = 7.0
+offset_right = 31.0
+offset_bottom = 29.0
+mouse_filter = 2
+color = Color(0.60926974, 0.6188993, 0.8727843, 1)
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

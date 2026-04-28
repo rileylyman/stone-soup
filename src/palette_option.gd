@@ -1,5 +1,5 @@
 class_name PaletteOption
-extends ColorRect
+extends Control
 
 const SELECTED_BORDER_WIDTH: int = 2
 
@@ -28,4 +28,4 @@ func deselect() -> void:
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			selected.emit(self )
+			selected.emit(self)

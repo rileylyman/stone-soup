@@ -4,6 +4,27 @@
 [ext_resource type="Script" uid="uid://baddi2tc4ufku" path="res://src/doodle.gd" id="1_87kse"]
 [ext_resource type="Script" uid="uid://ceofamhvrn1t8" path="res://src/palette.gd" id="2_xumdc"]
 [ext_resource type="Script" uid="uid://ciyu14jyf0602" path="res://src/send_to_server_button.gd" id="4_m7nh1"]
+[ext_resource type="PackedScene" uid="uid://b4sk1gbqwb1be" path="res://src/palette_button.tscn" id="5_sqomu"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_sqomu"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_dc1em"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_tkgiq"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_h2dcc"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_4vthw"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_4acau"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_3uker"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_3l3di"]
+allow_unpress = true
 
 [node name="Doodle" type="Control" unique_id=171411030]
 layout_mode = 3
@@ -24,17 +45,40 @@ grow_vertical = 2
 color = Color(0.1254902, 0.38039216, 0.42352942, 1)
 
 [node name="Canvas" type="TextureRect" parent="." unique_id=1670553154]
-custom_minimum_size = Vector2(256, 256)
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -111.0
+offset_right = 100.0
+offset_bottom = 89.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="Canvas" unique_id=1667222200]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SendToServer" type="Button" parent="." unique_id=234444630]
+layout_mode = 0
+offset_right = 123.0
+offset_bottom = 31.0
+text = "Send To Server"
+script = ExtResource("4_m7nh1")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="SendToServer" unique_id=1541941326]
+
 [node name="Palette" type="HBoxContainer" parent="." unique_id=781772195]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -73,14 +117,59 @@ layout_mode = 2
 [node name="PaletteOption8" parent="Palette" unique_id=79304735 instance=ExtResource("1_25yfo")]
 layout_mode = 2
 
-[node name="SendToServer" type="Button" parent="." unique_id=234444630]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Send To Server"
-script = ExtResource("4_m7nh1")
+[node name="JonPalette" type="HBoxContainer" parent="." unique_id=633732534]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 116.0
+offset_top = -47.0
+offset_right = -116.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = -8
 
-[node name="HTTPRequest" type="HTTPRequest" parent="SendToServer" unique_id=1541941326]
+[node name="PaletteButton" parent="JonPalette" unique_id=1950895568 instance=ExtResource("5_sqomu")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_sqomu")
+color = Color(1, 1, 1, 1)
 
-[connection signal="color_selected" from="Palette" to="." method="_on_palette_color_selected"]
+[node name="PaletteButton2" parent="JonPalette" unique_id=1395995767 instance=ExtResource("5_sqomu")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_dc1em")
+color = Color(0.74509805, 0.14901961, 0.2, 1)
+
+[node name="PaletteButton3" parent="JonPalette" unique_id=1011534886 instance=ExtResource("5_sqomu")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_tkgiq")
+color = Color(0.96862745, 0.8862745, 0.41960785, 1)
+
+[node name="PaletteButton4" parent="JonPalette" unique_id=149462974 instance=ExtResource("5_sqomu")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_h2dcc")
+color = Color(0.26666668, 0.5372549, 0.101960786, 1)
+
+[node name="PaletteButton5" parent="JonPalette" unique_id=2084868598 instance=ExtResource("5_sqomu")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_4vthw")
+color = Color(0.6392157, 0.80784315, 0.15294118, 1)
+
+[node name="PaletteButton6" parent="JonPalette" unique_id=1490133242 instance=ExtResource("5_sqomu")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_4acau")
+color = Color(0.6431373, 0.39215687, 0.13333334, 1)
+
+[node name="PaletteButton7" parent="JonPalette" unique_id=1950808655 instance=ExtResource("5_sqomu")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_3uker")
+color = Color(0.92156863, 0.5372549, 0.19215687, 1)
+
+[node name="PaletteButton8" parent="JonPalette" unique_id=1364473948 instance=ExtResource("5_sqomu")]
+layout_mode = 2
+button_group = SubResource("ButtonGroup_3l3di")
+color = Color(0, 0, 0, 1)
+
 [connection signal="pressed" from="SendToServer" to="SendToServer" method="_on_pressed"]
+[connection signal="color_selected" from="Palette" to="." method="_on_palette_color_selected"]

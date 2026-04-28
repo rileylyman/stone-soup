@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://rtdgbxwvxlia"]
+
+[ext_resource type="Script" uid="uid://b2du1ck0jyg1y" path="res://src/test/joint_test.gd" id="1_ek2fn"]
+[ext_resource type="PackedScene" uid="uid://da55rxln5h0c7" path="res://src/test/potato.tscn" id="2_tacld"]
+[ext_resource type="Script" uid="uid://c3pajnj5164fr" path="res://src/test/mouse_joint.gd" id="3_jvnfm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ek2fn"]
+
+[node name="JointTest" type="Node2D" unique_id=556317112]
+script = ExtResource("1_ek2fn")
+
+[node name="Potato_0" parent="." unique_id=1446951071 instance=ExtResource("2_tacld")]
+position = Vector2(153, 106)
+mass = 1.0
+
+[node name="Potato_1" parent="." unique_id=917201934 instance=ExtResource("2_tacld")]
+position = Vector2(157, 57)
+mass = 1.0
+
+[node name="PinJoint2D" type="PinJoint2D" parent="." unique_id=814978887]
+position = Vector2(154, 80)
+node_a = NodePath("../Potato_0")
+node_b = NodePath("../Potato_1")
+
+[node name="MouseJoint" type="Node2D" parent="." unique_id=2091366417 groups=["MouseJoint"]]
+script = ExtResource("3_jvnfm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="MouseJoint" unique_id=679438646]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseJoint/StaticBody2D" unique_id=54086689]
+shape = SubResource("CircleShape2D_ek2fn")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="MouseJoint" unique_id=535288858]
+node_a = NodePath("../StaticBody2D")
+softness = 15.0
