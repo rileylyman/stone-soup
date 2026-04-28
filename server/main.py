@@ -41,7 +41,12 @@ def get_images() -> list[dict[str, object]]:
     _purge_expired()
     now = time.monotonic()
     return [
-        {"id": s.id, "time_remaining_pct": round(max(0.0, (s.expires_at - now) / IMAGE_TTL_SECONDS * 100), 2)}
+        {
+            "id": s.id,
+            "time_remaining_pct": round(
+                max(0.0, (s.expires_at - now) / IMAGE_TTL_SECONDS), 2
+            ),
+        }
         for s in _images.values()
     ]
 
