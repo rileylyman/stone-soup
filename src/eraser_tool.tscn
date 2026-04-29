@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ya7g6unauawb"]
+
+[ext_resource type="Texture2D" uid="uid://cg74ia5krdvbq" path="res://sprites/EraserSelected.png" id="1_i70ww"]
+[ext_resource type="Texture2D" uid="uid://cnqeja3mlfspu" path="res://sprites/Eraser.png" id="2_6n323"]
+[ext_resource type="Script" uid="uid://bktasp7x44byq" path="res://src/tool.gd" id="3_6n323"]
+
+[node name="EraserTool" type="CheckButton" unique_id=1033669137 groups=["Tools"]]
+offset_right = 90.0
+offset_bottom = 76.0
+mouse_default_cursor_shape = 2
+theme_override_icons/checked = ExtResource("1_i70ww")
+theme_override_icons/unchecked = ExtResource("2_6n323")
+script = ExtResource("3_6n323")
+tool_name = "Eraser"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="toggled" from="." to="." method="_on_toggled"]

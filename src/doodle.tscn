@@ -5,20 +5,16 @@
 [ext_resource type="Script" uid="uid://ceofamhvrn1t8" path="res://src/palette.gd" id="2_xumdc"]
 [ext_resource type="Script" uid="uid://ciyu14jyf0602" path="res://src/send_to_server_button.gd" id="4_m7nh1"]
 [ext_resource type="PackedScene" uid="uid://b4sk1gbqwb1be" path="res://src/palette_button.tscn" id="5_sqomu"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_sqomu"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_dc1em"]
+[ext_resource type="PackedScene" uid="uid://bp1g1sdej25ma" path="res://src/pencil_tool.tscn" id="6_dc1em"]
+[ext_resource type="PackedScene" uid="uid://ya7g6unauawb" path="res://src/eraser_tool.tscn" id="7_tkgiq"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_tkgiq"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_h2dcc"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_4vthw"]
-allow_unpress = true
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_4acau"]
-allow_unpress = true
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_3uker"]
 allow_unpress = true
@@ -26,7 +22,13 @@ allow_unpress = true
 [sub_resource type="ButtonGroup" id="ButtonGroup_3l3di"]
 allow_unpress = true
 
-[node name="Doodle" type="Control" unique_id=171411030]
+[sub_resource type="ButtonGroup" id="ButtonGroup_fgnvj"]
+allow_unpress = true
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ehbul"]
+allow_unpress = true
+
+[node name="Doodle" type="Control" unique_id=171411030 node_paths=PackedStringArray("starting_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,6 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_87kse")
+starting_button = NodePath("JonPalette/PaletteButton6")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1113475981]
 layout_mode = 1
@@ -42,31 +45,96 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.1254902, 0.38039216, 0.42352942, 1)
+color = Color(0, 0.34117648, 0.5176471, 1)
 
 [node name="Canvas" type="TextureRect" parent="." unique_id=1670553154]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(256, 256)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -111.0
-offset_right = 100.0
-offset_bottom = 89.0
+offset_left = -128.0
+offset_top = -139.0
+offset_right = 128.0
+offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Canvas" unique_id=1667222200]
+[node name="Shadow" type="ColorRect" parent="Canvas" unique_id=823793938]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.18431373, 0.28235295, 0.30588236, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Canvas" unique_id=1667222200]
+show_behind_parent = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = -127.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6156863, 0.6156863, 0.6156863, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Canvas" unique_id=1525892260]
+show_behind_parent = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 129.0
+offset_top = 129.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6156863, 0.6156863, 0.6156863, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Canvas" unique_id=1090034094]
+show_behind_parent = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 129.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8175215, 0.81752115, 0.81752115, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Canvas" unique_id=339015346]
+show_behind_parent = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 129.0
+offset_right = -127.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8175215, 0.81752115, 0.81752115, 1)
 
 [node name="SendToServer" type="Button" parent="." unique_id=234444630]
 layout_mode = 0
@@ -123,53 +191,72 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 116.0
-offset_top = -47.0
-offset_right = -116.0
-offset_bottom = -11.0
+offset_left = 80.0
+offset_top = -60.0
+offset_right = -80.0
+offset_bottom = -24.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = -8
+theme_override_constants/separation = 0
 
 [node name="PaletteButton" parent="JonPalette" unique_id=1950895568 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_sqomu")
+button_group = SubResource("ButtonGroup_tkgiq")
 color = Color(1, 1, 1, 1)
 
 [node name="PaletteButton2" parent="JonPalette" unique_id=1395995767 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_dc1em")
+button_group = SubResource("ButtonGroup_h2dcc")
 color = Color(0.74509805, 0.14901961, 0.2, 1)
 
 [node name="PaletteButton3" parent="JonPalette" unique_id=1011534886 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_tkgiq")
+button_group = SubResource("ButtonGroup_4vthw")
 color = Color(0.96862745, 0.8862745, 0.41960785, 1)
 
 [node name="PaletteButton4" parent="JonPalette" unique_id=149462974 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_h2dcc")
+button_group = SubResource("ButtonGroup_4acau")
 color = Color(0.26666668, 0.5372549, 0.101960786, 1)
 
 [node name="PaletteButton5" parent="JonPalette" unique_id=2084868598 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_4vthw")
-color = Color(0.6392157, 0.80784315, 0.15294118, 1)
+button_group = SubResource("ButtonGroup_3uker")
+color = Color(0.8784314, 0.43529412, 0.54509807, 1)
 
 [node name="PaletteButton6" parent="JonPalette" unique_id=1490133242 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_4acau")
+button_group = SubResource("ButtonGroup_3l3di")
 color = Color(0.6431373, 0.39215687, 0.13333334, 1)
 
 [node name="PaletteButton7" parent="JonPalette" unique_id=1950808655 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_3uker")
+button_group = SubResource("ButtonGroup_fgnvj")
 color = Color(0.92156863, 0.5372549, 0.19215687, 1)
 
 [node name="PaletteButton8" parent="JonPalette" unique_id=1364473948 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_3l3di")
+button_group = SubResource("ButtonGroup_ehbul")
 color = Color(0, 0, 0, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=861444162]
+anchor_mode = 0
+
+[node name="PencilTool" parent="." unique_id=1033669137 instance=ExtResource("6_dc1em")]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 109.0
+offset_right = 97.0
+offset_bottom = 186.0
+
+[node name="EraserTool" parent="." unique_id=1694230343 instance=ExtResource("7_tkgiq")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 189.0
+offset_right = 100.0
+offset_bottom = 265.0
 
 [connection signal="pressed" from="SendToServer" to="SendToServer" method="_on_pressed"]
 [connection signal="color_selected" from="Palette" to="." method="_on_palette_color_selected"]
+[connection signal="tool_selected" from="PencilTool" to="." method="_on_pencil_tool_tool_selected"]
+[connection signal="tool_selected" from="EraserTool" to="." method="_on_eraser_tool_tool_selected"]

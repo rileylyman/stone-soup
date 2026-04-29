@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bp1g1sdej25ma"]
+
+[ext_resource type="Texture2D" uid="uid://dki7s3kwk4gf3" path="res://sprites/Pencil.png" id="1_3cmlt"]
+[ext_resource type="Texture2D" uid="uid://ca6473uwvoy64" path="res://sprites/PencilSelected.png" id="1_t1cbo"]
+[ext_resource type="Script" uid="uid://bktasp7x44byq" path="res://src/tool.gd" id="3_pwk6q"]
+
+[node name="PencilTool" type="CheckButton" unique_id=1033669137 groups=["Tools"]]
+offset_right = 86.0
+offset_bottom = 77.0
+mouse_default_cursor_shape = 2
+theme_override_icons/checked = ExtResource("1_t1cbo")
+theme_override_icons/unchecked = ExtResource("1_3cmlt")
+script = ExtResource("3_pwk6q")
+tool_name = "Pencil"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="toggled" from="." to="." method="_on_toggled"]

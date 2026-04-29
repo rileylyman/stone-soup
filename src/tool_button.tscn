@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bjuj7eo37k00j"]
+
+[ext_resource type="Texture2D" uid="uid://dki7s3kwk4gf3" path="res://sprites/Pencil.png" id="1_kdrod"]
+
+[node name="ToolButton" type="CheckButton" unique_id=1033669137]
+offset_right = 86.0
+offset_bottom = 77.0
+theme_override_icons/unchecked = ExtResource("1_kdrod")

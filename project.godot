@@ -15,12 +15,14 @@ run/main_scene="uid://dwhgc8fntbe0f"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://dbvkk3a0e8c16"
 
+[autoload]
+
+Globals="*uid://0nsy18tn4dgb"
+
 [display]
 
-window/size/viewport_width=400
-window/size/viewport_height=320
-window/size/window_width_override=800
-window/size/window_height_override=640
+window/size/viewport_width=480
+window/size/viewport_height=400
 window/stretch/mode="viewport"
 
 [dotnet]
@@ -31,6 +33,7 @@ project/assembly_name="stone-soup"
 
 PaletteButtons=""
 MouseJoint=""
+Tools=""
 
 [input]
 

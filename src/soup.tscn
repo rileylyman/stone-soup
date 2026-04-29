@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dp8gs6bl1hi6k" path="res://src/food_manager.tscn" id="2_aueg5"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x1lg4"]
-load_path = "res://.godot/imported/NewCanvas2.png-ca79b67a4ebb45bbba54676acc721196.ctex"
 
 [node name="Soup" type="Node2D" unique_id=1061233511]
 
@@ -12,8 +11,8 @@ load_path = "res://.godot/imported/NewCanvas2.png-ca79b67a4ebb45bbba54676acc7211
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 400.0
-offset_bottom = 320.0
+offset_right = 480.0
+offset_bottom = 480.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.24543518, 0.4556377, 0.29821578, 1)
@@ -24,8 +23,9 @@ texture = SubResource("CompressedTexture2D_x1lg4")
 centered = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=820327118]
-position = Vector2(40, 80)
+position = Vector2(77, 127)
 texture = ExtResource("1_x1lg4")
 centered = false
 
 [node name="FoodManager" parent="." unique_id=1773176010 instance=ExtResource("2_aueg5")]
+position = Vector2(37, 89)

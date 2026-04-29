@@ -25,4 +25,12 @@ offset_bottom = 29.0
 mouse_filter = 2
 color = Color(0.60926974, 0.6188993, 0.8727843, 1)
 
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect" unique_id=1684015948]
+modulate = Color(0.18431373, 0.28235295, 0.30588236, 1)
+show_behind_parent = true
+position = Vector2(-3, 0)
+texture = ExtResource("1_uv1o1")
+centered = false
+
 [connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="toggled" from="." to="." method="_on_toggled"]
