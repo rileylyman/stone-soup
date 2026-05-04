@@ -10,7 +10,7 @@ fi
 
 source .venv/bin/activate
 
-WORKERS=${WORKERS:-4}
+WORKERS=${WORKERS:-1}
 HOST=${HOST:-0.0.0.0}
 PORT=${PORT:-8000}
 

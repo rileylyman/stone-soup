@@ -3,6 +3,7 @@ extends Node2D
 
 const Food = preload("res://src/food.tscn")
 const ServerAddr = "http://167.172.15.13/images"
+# const ServerAddr = "http://127.0.0.1:8000/images"
 
 @export var poll_interval := 2.0
 
@@ -13,6 +14,8 @@ class FoodHandle:
 
 var foods: Array[FoodHandle]
 
+signal list_request_result(success: bool)
+
 func _ready() -> void:
 	_periodic_poll()
 
@@ -20,29 +23,36 @@ func _periodic_poll() -> void:
 	while true:
 		for food in foods:
 			food.seen = false
-		await _list_request()
-		for i in range(foods.size() - 1, -1, -1):
-			if not foods[i].seen:
-				foods[i].food.queue_free()
-				foods.remove_at(i)
+		if await _list_request():
+			for i in range(foods.size() - 1, -1, -1):
+				if not foods[i].seen:
+					foods[i].food.queue_free()
+					foods.remove_at(i)
 		await get_tree().create_timer(poll_interval).timeout
 
-func _list_request() -> void:
+func _list_request() -> bool:
 	var req = HTTPRequest.new()
 	add_child(req)
 	req.request_completed.connect(func(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 		if result != HTTPRequest.RESULT_SUCCESS or response_code != 200:
 			print("Error when listing: ", result, " ", response_code)
+			list_request_result.emit(false)
 			return
+
 		var json = JSON.new()
+		print("Body: ", body.get_string_from_utf8())
 		json.parse(body.get_string_from_utf8())
 		var response = json.get_data()
+		print("Response: ", response)
 		for food_info in response:
-			_update_food(food_info["id"])
+			await _update_food(food_info["id"])
+		list_request_result.emit(true)
 	)
 
 	req.request(ServerAddr, [], HTTPClient.METHOD_GET)
-	await req.request_completed
+	var success = await list_request_result
+	req.queue_free()
+	return success
 
 func _update_food(id: String) -> void:
 	var idx := foods.find_custom(func(f): return f.id == id)
@@ -53,6 +63,7 @@ func _update_food(id: String) -> void:
 	var new_handle = FoodHandle.new()
 	new_handle.id = id
 	new_handle.seen = true
+	print("New food: ", id)
 
 	var req = HTTPRequest.new()
 	add_child(req)
@@ -68,6 +79,7 @@ func _update_food(id: String) -> void:
 
 	req.request(ServerAddr + "/" + id, [], HTTPClient.METHOD_GET)
 	await req.request_completed
+	req.queue_free()
 
 	if new_handle.food != null:
 		foods.append(new_handle)
