@@ -6,7 +6,7 @@ from fastapi.responses import Response
 
 app = FastAPI()
 
-IMAGE_TTL_SECONDS = 300  # 5 minutes
+IMAGE_TTL_SECONDS = 60 * 60 * 8
 
 
 class StoredImage:
