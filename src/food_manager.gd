@@ -11,6 +11,7 @@ class FoodHandle:
 	var id: String
 	var food: PathFollow2D
 	var seen: bool
+	var time_remaining_s: float
 
 var foods: Array[FoodHandle]
 
@@ -40,12 +41,10 @@ func _list_request() -> bool:
 			return
 
 		var json = JSON.new()
-		print("Body: ", body.get_string_from_utf8())
 		json.parse(body.get_string_from_utf8())
 		var response = json.get_data()
-		print("Response: ", response)
 		for food_info in response:
-			await _update_food(food_info["id"])
+			await _update_food(food_info["id"], food_info["time_remaining_s"])
 		list_request_result.emit(true)
 	)
 
@@ -54,22 +53,23 @@ func _list_request() -> bool:
 	req.queue_free()
 	return success
 
-func _update_food(id: String) -> void:
+func _update_food(id: String, time_remaining_s: float) -> void:
 	var idx := foods.find_custom(func(f): return f.id == id)
 	if idx >= 0:
 		foods[idx].seen = true
+		foods[idx].time_remaining_s = time_remaining_s
 		return
 	
 	var new_handle = FoodHandle.new()
 	new_handle.id = id
 	new_handle.seen = true
-	print("New food: ", id)
+	new_handle.time_remaining_s = time_remaining_s
 
 	var req = HTTPRequest.new()
 	add_child(req)
 	req.request_completed.connect(func(result: int, response_code: int, _headers: PackedStringArray, body: PackedByteArray):
 		if result != HTTPRequest.RESULT_SUCCESS or response_code != 200:
-			print("Error when getting image: ", result, " ", response_code)
+			print("Error when getting image: ", id, " ", result, " ", response_code)
 			return
 		var png = Image.new()
 		png.load_png_from_buffer(body)

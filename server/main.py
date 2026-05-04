@@ -43,9 +43,7 @@ def get_images() -> list[dict[str, object]]:
     return [
         {
             "id": s.id,
-            "time_remaining_pct": round(
-                max(0.0, (s.expires_at - now) / IMAGE_TTL_SECONDS), 2
-            ),
+            "time_remaining_s": round(max(0.0, (s.expires_at - now)), 2),
         }
         for s in _images.values()
     ]
