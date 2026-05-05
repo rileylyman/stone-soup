@@ -3,9 +3,20 @@
 [ext_resource type="Texture2D" uid="uid://b8ilh777086ue" path="res://sprites/Potato.png" id="1_3wdjq"]
 [ext_resource type="Script" uid="uid://d2g207tga4pvj" path="res://src/food.gd" id="1_dw37r"]
 
-[node name="Food" type="PathFollow2D" unique_id=1602452973]
-rotates = false
+[sub_resource type="CircleShape2D" id="CircleShape2D_dw37r"]
+radius = 20.09975
+
+[node name="Food" type="Area2D" unique_id=543599099]
 script = ExtResource("1_dw37r")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=956734438]
 texture = ExtResource("1_3wdjq")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1212213036]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+position = Vector2(2, 3)
+texture = ExtResource("1_3wdjq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=806053505]
+shape = SubResource("CircleShape2D_dw37r")

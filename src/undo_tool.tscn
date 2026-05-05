@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://diofen2qklyqj"]
+
+[ext_resource type="Texture2D" uid="uid://cor7wrx34l2mw" path="res://sprites/UndoSelected.png" id="1_rt8fw"]
+[ext_resource type="Texture2D" uid="uid://dm54nbx5dqig1" path="res://sprites/Undo.png" id="2_o5q6t"]
+[ext_resource type="Script" uid="uid://bktasp7x44byq" path="res://src/tool.gd" id="3_f83lt"]
+
+[node name="UndoTool" type="CheckButton" unique_id=1033669137 groups=["Tools"]]
+offset_right = 91.0
+offset_bottom = 91.0
+mouse_default_cursor_shape = 2
+theme_override_icons/checked = ExtResource("1_rt8fw")
+theme_override_icons/unchecked = ExtResource("2_o5q6t")
+script = ExtResource("3_f83lt")
+tool_name = "Undo"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="toggled" from="." to="." method="_on_toggled"]

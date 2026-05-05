@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b8r0pwiks62tv"]
+
+[ext_resource type="Texture2D" uid="uid://bk51ggly5owfh" path="res://sprites/BucketSelected.png" id="1_6n25t"]
+[ext_resource type="Texture2D" uid="uid://dlt76yuo57jt" path="res://sprites/Bucket.png" id="2_eyohd"]
+[ext_resource type="Script" uid="uid://bktasp7x44byq" path="res://src/tool.gd" id="3_f32iw"]
+
+[node name="BucketTool" type="CheckButton" unique_id=1033669137 groups=["Tools"]]
+offset_right = 92.0
+offset_bottom = 82.0
+mouse_default_cursor_shape = 2
+theme_override_icons/checked = ExtResource("1_6n25t")
+theme_override_icons/unchecked = ExtResource("2_eyohd")
+script = ExtResource("3_f32iw")
+tool_name = "Bucket"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="toggled" from="." to="." method="_on_toggled"]

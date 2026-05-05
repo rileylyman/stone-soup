@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cy7yiv5gjuq1d"]
+
+[ext_resource type="Texture2D" uid="uid://dj7r7tokes4in" path="res://sprites/BombSelected.png" id="1_o1sc8"]
+[ext_resource type="Texture2D" uid="uid://cp0r1ouoa8my7" path="res://sprites/Bomb.png" id="2_g3uhy"]
+[ext_resource type="Script" uid="uid://bktasp7x44byq" path="res://src/tool.gd" id="3_xmw26"]
+
+[node name="BombTool" type="CheckButton" unique_id=1033669137 groups=["Tools"]]
+offset_right = 88.0
+offset_bottom = 91.0
+mouse_default_cursor_shape = 2
+theme_override_icons/checked = ExtResource("1_o1sc8")
+theme_override_icons/unchecked = ExtResource("2_g3uhy")
+toggle_mode = false
+script = ExtResource("3_xmw26")
+tool_name = "Bomb"
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="toggled" from="." to="." method="_on_toggled"]

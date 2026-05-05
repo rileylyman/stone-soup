@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 
 @onready var http_request: HTTPRequest = $HTTPRequest
 
@@ -11,4 +11,5 @@ func _on_pressed() -> void:
 	)
 	# var req = http_request.request_raw("http://67.205.182.218/images", ["Content-Type: image/png"], HTTPClient.METHOD_POST, png_bytes)
 	var req = http_request.request_raw(FoodManager.ServerAddr, ["Content-Type: image/png"], HTTPClient.METHOD_POST, png_bytes)
-	await req.request_completed
+	get_parent()._reset_canvas()
+	#await req.request_completed

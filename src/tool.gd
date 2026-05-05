@@ -4,12 +4,16 @@ signal tool_selected(tool_id)
 
 @export var tool_name = ""
 
+func _ready():
+	pass
+
 func unpress(ref):
 	if ref != self:
 		button_pressed = false
 
 func _on_pressed():
-	get_tree().call_group("Tools", "unpress", self)
+	if tool_name != "Bomb" and tool_name != "Undo":
+		get_tree().call_group("Tools", "unpress", self)
 	tool_selected.emit(tool_name)
 
 func _on_toggled(toggled_on):
