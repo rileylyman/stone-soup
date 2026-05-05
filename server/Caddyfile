@@ -1,3 +1,0 @@
-{$DOMAIN} {
-    reverse_proxy localhost:{$PORT:8000}
-}
