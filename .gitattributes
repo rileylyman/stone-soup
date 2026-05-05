@@ -7,6 +7,9 @@
 # Exclude third-party plugins from GitHub stats
 addons/** linguist-vendored
 
+*.wasm                  lfs
+*.pck                   lfs
+
 # 3D models
 *.3dm                   lfs
 *.3ds                   lfs

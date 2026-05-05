@@ -1,8 +1,9 @@
 import time
 import uuid
+from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import Response
+from fastapi.responses import FileResponse, RedirectResponse, Response
 
 app = FastAPI()
 
@@ -47,6 +48,33 @@ def get_images() -> list[dict[str, object]]:
         }
         for s in _images.values()
     ]
+
+
+_GAME_BUILD_DIR = Path(__file__).parent / "game-build"
+_GAME_HEADERS = {
+    "Cross-Origin-Opener-Policy": "same-origin",
+    "Cross-Origin-Embedder-Policy": "require-corp",
+}
+
+
+@app.get("/game")
+def get_game() -> RedirectResponse:
+    return RedirectResponse(url="/game/", status_code=301)
+
+
+@app.get("/game/")
+def get_game_index() -> FileResponse:
+    return FileResponse(_GAME_BUILD_DIR / "stone-soup.html", headers=_GAME_HEADERS)
+
+
+@app.get("/game/{filename:path}")
+def get_game_file(filename: str) -> FileResponse:
+    target = (_GAME_BUILD_DIR / filename).resolve()
+    if not str(target).startswith(str(_GAME_BUILD_DIR.resolve())):
+        raise HTTPException(status_code=403, detail="Forbidden")
+    if not target.is_file():
+        raise HTTPException(status_code=404, detail="File not found")
+    return FileResponse(target, headers=_GAME_HEADERS)
 
 
 @app.get("/images/{image_id}")
