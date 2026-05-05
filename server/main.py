@@ -69,7 +69,7 @@ async def post_image(request: Request) -> dict[str, str]:
         print("img open failed")
         raise HTTPException(400)
 
-    if len(img.info) != 0:
+    if len(img.info) != 1 or "srgb" not in img.info:
         print("metadata exists")
         print(img.info)
         raise HTTPException(400)
