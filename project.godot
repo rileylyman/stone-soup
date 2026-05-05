@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="stone-soup"
-run/main_scene="uid://dwhgc8fntbe0f"
+run/main_scene="uid://bct3kpk8f2u2w"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://dbvkk3a0e8c16"
 

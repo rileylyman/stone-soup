@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6y3w0i63duyu"
-path="res://.godot/imported/stone-soup.icon.png-b8324d2a1ddc296d05abf3d80c2f5783.ctex"
+uid="uid://7mp407oysyqw"
+path="res://.godot/imported/index.apple-touch-icon.png-e899adeaefdcfdffe15c853272d20650.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://server/game-build/stone-soup.icon.png"
-dest_files=["res://.godot/imported/stone-soup.icon.png-b8324d2a1ddc296d05abf3d80c2f5783.ctex"]
+source_file="res://server/game/soup/index.apple-touch-icon.png"
+dest_files=["res://.godot/imported/index.apple-touch-icon.png-e899adeaefdcfdffe15c853272d20650.ctex"]
 
 [params]
 

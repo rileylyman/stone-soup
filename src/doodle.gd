@@ -66,7 +66,7 @@ func _process(_delta: float) -> void:
 			_update_canvas()
 			if last_pressed:
 				var curr_pos = Vector2(x, y)
-				if curr_pos.distance_to(last_pressed_pos) > (brush_size / 4):
+				if curr_pos.distance_to(last_pressed_pos) > (brush_size >> 2):
 					_draw_line(curr_pos, last_pressed_pos)
 		last_pressed_pos = Vector2(x, y)
 		last_pressed = true
@@ -78,17 +78,17 @@ func _process(_delta: float) -> void:
 
 func _draw_line(start_pos : Vector2, end_pos : Vector2):
 	var direction = start_pos.direction_to(end_pos)
-	var add_buffer = direction * (brush_size / 4)
+	var add_buffer = direction * (brush_size >> 2)
 	var curr_pos = start_pos + add_buffer
 	var sz = brush_size
-	while curr_pos.distance_to(end_pos) > (brush_size / 4):
+	while curr_pos.distance_to(end_pos) > (brush_size >> 2):
 		for i in range(sz):
 			for j in range(sz):
 				if i == 0 and j == 0 or (i == sz-1 and j == sz-1):
 					continue
 				if (i == 0 and j == sz-1) or (i == sz-1 and j == 0):
 					continue
-				_draw_at(curr_pos.x + i - sz / 2, curr_pos.y + j - sz / 2, _color)
+				_draw_at(curr_pos.x + i - int(sz / 2.0), curr_pos.y + j - int(sz / 2.0), _color)
 		curr_pos += add_buffer
 
 var fill_points = []
@@ -142,7 +142,7 @@ func _draw_at_sz(x: int, y: int, color: Color, sz: int) -> void:
 				continue
 			if (i == 0 and j == sz-1) or (i == sz-1 and j == 0):
 				continue
-			_draw_at(x + i - sz / 2, y + j - sz / 2, color)
+			_draw_at(x + i - int(sz / 2.0), y + j - int(sz / 2.0), color)
 			
 
 func get_image() -> Image:
@@ -182,7 +182,7 @@ func _on_bucket_tool_tool_selected(tool_id):
 	_color.a = 1.0
 	current_tool = tool_id
 
-func _on_bomb_tool_tool_selected(tool_id):
+func _on_bomb_tool_tool_selected(_tool_id):
 	image_stack.clear()
 	data = []
 	for i in range(data_size_x * data_size_y):
@@ -197,7 +197,7 @@ func _on_bomb_tool_tool_selected(tool_id):
 	$SendToServer.disabled = true
 	$SendToServer.mouse_default_cursor_shape = CURSOR_ARROW
 
-func _on_undo_tool_tool_selected(tool_id):
+func _on_undo_tool_tool_selected(_tool_id):
 	if !image_stack.is_empty():
 		var last_image : Image = image_stack.pop_back()
 		if drawn_since_reset:
