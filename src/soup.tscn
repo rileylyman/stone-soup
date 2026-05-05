@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cqsdfl4hshnt" path="res://sprites/SoupBg.png" id="1_x1lg4"]
 [ext_resource type="PackedScene" uid="uid://dp8gs6bl1hi6k" path="res://src/food_manager.tscn" id="2_aueg5"]
 [ext_resource type="Texture2D" uid="uid://bqxifgf2nrcf6" path="res://sprites/Background.png" id="2_dnfdp"]
+[ext_resource type="Texture2D" uid="uid://b1g0f1jpj64x3" path="res://sprites/qrcode.png" id="5_m3sty"]
 
 [node name="Soup" type="Control" unique_id=1941144420]
 layout_mode = 3
@@ -62,3 +63,16 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.22745098)
 
 [node name="FoodManager" parent="." unique_id=1773176010 instance=ExtResource("2_aueg5")]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1849049015]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -88.0
+offset_right = 87.0
+offset_bottom = -6.0
+grow_vertical = 0
+texture = ExtResource("5_m3sty")
+expand_mode = 1
