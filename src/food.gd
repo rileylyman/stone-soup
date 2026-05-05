@@ -14,7 +14,8 @@ func _ready():
 	$Shadow.texture = $Sprite2D.texture
 
 func _process(delta):
-	rotate(rotate_speed * delta)
+	$Sprite2D.rotate(rotate_speed * delta)
+	$Shadow.rotate(rotate_speed * delta)
 	position += direction * speed * delta
 	if position.x < -buffer or position.x > get_viewport_rect().size.x + buffer:
 		direction.x *= -1
