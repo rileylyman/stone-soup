@@ -1,14 +1,29 @@
 import time
 import uuid
 from pathlib import Path
+import io
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, RedirectResponse, Response
+from PIL import Image
 
 app = FastAPI()
 
 IMAGE_TTL_SECONDS = 60 * 60 * 8
 
+palette = [
+    [0, 0, 0],
+    [255, 255, 255],
+    [190, 38, 51],
+    [224, 111, 139],
+    [73, 60, 43],
+    [164, 100, 34],
+    [235, 137, 49],
+    [247, 226, 107],
+    [68, 137, 26],
+    [163, 206, 39],
+    [49, 162, 242],
+]
 
 class StoredImage:
     def __init__(self, png_bytes: bytes) -> None:
@@ -32,6 +47,24 @@ def _purge_expired() -> None:
 async def post_image(request: Request) -> dict[str, str]:
     _purge_expired()
     png_bytes = await request.body()
+
+    img = Image.open(io.BytesIO(png_bytes))
+
+    if img.size[0] != 64 or img.size[1] != 64:
+        raise HTTPException(400)
+
+    rgb = img.convert("RGB")
+    for d in rgb.get_flattened_data():
+        found = False
+        for c in palette:
+            if type(d) is float:
+                break
+            if d[0] == c[0] and d[1] == c[1] and d[2] == c[2]:  # type: ignore
+                found = True
+                break
+        if not found:
+            raise HTTPException(400)
+
     stored = StoredImage(png_bytes)
     _images[stored.id] = stored
     return {"id": stored.id}
