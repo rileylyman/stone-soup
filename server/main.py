@@ -40,7 +40,7 @@ _images: dict[str, StoredImage] = {}
 
 def _purge_expired() -> None:
     now = time.monotonic()
-    expired = [k for k, v in _images.items() if v.expires_at <= now]
+    expired = [k for k, v in _images.items() if (v.expires_at + 60) <= now]
     for k in expired:
         del _images[k]
 
@@ -132,7 +132,10 @@ def get_soup_index() -> FileResponse:
 
 @app.get("/soup/clear")
 def get_soup_clear() -> RedirectResponse:
-    _images.clear()
+    now = time.monotonic()
+    for img in _images.values():
+        img.expires_at = now
+
     return RedirectResponse(url="/soup/", status_code=301)
 
 
