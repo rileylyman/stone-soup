@@ -11,7 +11,7 @@ fi
 source .venv/bin/activate
 
 WORKERS=${WORKERS:-1}
-HOST=${HOST:-0.0.0.0}
+HOST=${HOST:-127.0.0.1}
 PORT=${PORT:-8000}
 
 exec gunicorn main:app \
