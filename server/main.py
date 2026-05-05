@@ -10,6 +10,8 @@ from PIL import Image
 app = FastAPI()
 
 IMAGE_TTL_SECONDS = 60 * 60 * 8
+MAX_BYTES = 10_000
+MAX_IMAGES = 500
 
 palette = [
     [0, 0, 0],
@@ -46,9 +48,25 @@ def _purge_expired() -> None:
 @app.post("/images", status_code=201)
 async def post_image(request: Request) -> dict[str, str]:
     _purge_expired()
-    png_bytes = await request.body()
 
-    img = Image.open(io.BytesIO(png_bytes))
+    if len(_images) > MAX_IMAGES:
+        raise HTTPException(400)
+
+    png_bytes = await request.body()
+    if len(png_bytes) > MAX_BYTES:
+        raise HTTPException(400)
+
+    PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
+    if not png_bytes.startswith(PNG_MAGIC):
+        raise HTTPException(400, "not a PNG")
+
+    try:
+        img = Image.open(io.BytesIO(png_bytes))
+    except Exception:
+        raise HTTPException(400)
+
+    if len(img.info) != 0:
+        raise HTTPException(400)
 
     if img.size[0] != 64 or img.size[1] != 64:
         raise HTTPException(400)

@@ -25,5 +25,6 @@ func _on_pressed() -> void:
 	if success:
 		await send_bar.success()
 		get_parent()._reset_canvas()
+		get_parent().image_stack.clear()
 	else:
 		await send_bar.fail()
