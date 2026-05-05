@@ -5,10 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://dp8gs6bl1hi6k" path="res://src/food_manager.tscn" id="2_aueg5"]
 [ext_resource type="Texture2D" uid="uid://bqxifgf2nrcf6" path="res://sprites/Background.png" id="2_dnfdp"]
 
-[node name="Soup" type="Node2D" unique_id=1061233511]
+[node name="Soup" type="Control" unique_id=1941144420]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_gwo47")
 
 [node name="Background" type="ColorRect" parent="." unique_id=467807278]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,17 +25,33 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.24543518, 0.4556377, 0.29821578, 1)
 
-[node name="Bg" type="Sprite2D" parent="." unique_id=438213264]
+[node name="Bg" type="TextureRect" parent="." unique_id=528376471]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_dnfdp")
-centered = false
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=820327118]
-position = Vector2(60, 58)
+[node name="Pot" type="TextureRect" parent="." unique_id=1054886472]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.5
+offset_top = -147.5
+offset_right = 166.5
+offset_bottom = 147.5
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_x1lg4")
-centered = false
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=43387299]
 custom_minimum_size = Vector2(480, 400)
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
