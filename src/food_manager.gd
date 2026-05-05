@@ -56,6 +56,8 @@ func _update_food(id: String, time_remaining_s: float) -> void:
 	var new_handle = FoodHandle.new()
 	new_handle.id = id
 	new_handle.time_remaining_s = time_remaining_s
+	if time_remaining_s <= 0.0:
+		return
 
 	var req = HTTPRequest.new()
 	add_child(req)
