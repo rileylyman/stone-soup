@@ -9,7 +9,7 @@ const ServerAddr = "http://167.172.15.13/images"
 
 class FoodHandle:
 	var id: String
-	var food: PathFollow2D
+	var food: Area2D
 	var time_remaining_s: float
 
 var foods: Array[FoodHandle]
@@ -80,10 +80,10 @@ func _process(delta: float):
 	for food in foods:
 		food.time_remaining_s -= delta
 
-func add_food(image: Image) -> PathFollow2D:
-	var next_food : PathFollow2D = Food.instantiate()
+func add_food(image: Image) -> Area2D:
+	var next_food : Area2D = Food.instantiate()
 	if image != null:
 		next_food.get_node("Sprite2D").texture = ImageTexture.create_from_image(image)
-	$Paths.get_child(randi() % $Paths.get_child_count()).add_child(next_food)
-	next_food.progress_ratio = randf()
+	next_food.position = get_viewport_rect().size / 2
+	add_child(next_food)
 	return next_food
