@@ -1,5 +1,7 @@
 extends TextureButton
 
+@export var send_bar: SendBar = null
+
 @onready var http_request: HTTPRequest = $HTTPRequest
 
 signal sent(success: bool)
@@ -16,6 +18,12 @@ func _on_pressed() -> void:
 	)
 
 	http_request.request_raw(FoodManager.ServerAddr, ["Content-Type: image/png"], HTTPClient.METHOD_POST, png_bytes)
+	send_bar.fill()
 	var success = await sent
+	if not send_bar.fill_complete:
+		await send_bar.fill_complete_signal
 	if success:
+		await send_bar.success()
 		get_parent()._reset_canvas()
+	else:
+		await send_bar.fail()

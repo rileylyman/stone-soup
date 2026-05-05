@@ -1,14 +1,50 @@
+class_name SendBar
 extends Control
 
-@export var fill_time := 1.0
+@export var fill_time := 2.0
 
 var t := 0.0
+var _filling := false
+var fill_complete := false
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+signal fill_complete_signal
 
+@onready var bar_blue_original_width = $BarBlue.size.x
+@onready var sending_blue_original_width = $SendingBlue.size.x
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func fill():
+	visible = true
+	$SendingBlue.visible = true
+	$BarRed.visible = false
+	$ErrorWord.visible = false
+	$DoneWord.visible = false
+
+	t = 0
+	_filling = true
+	fill_complete = false
+
+func success(): 
+	$SendingBlue.visible = false
+	$DoneWord.visible = true
+	await get_tree().create_timer(1.0).timeout
+	visible = false
+
+func fail():
+	$SendingBlue.visible = false
+	$BarRed.visible = true
+	$ErrorWord.visible = true
+	await get_tree().create_timer(1.0).timeout
+	visible = false
+
 func _process(delta: float) -> void:
-	pass
+	if _filling:
+		t = clamp(t + delta / fill_time, 0.0, 1.0)
+
+		$BarBlue.size.x = bar_blue_original_width * t
+		$SendingBlue.size.x = sending_blue_original_width * t
+
+		if t == 1.0:
+			fill_complete_signal.emit()
+			_filling = false
+			fill_complete = true
+	
