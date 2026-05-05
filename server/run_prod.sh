@@ -10,6 +10,8 @@ fi
 
 source .venv/bin/activate
 
+export PYTHONUNBUFFERED=1
+
 WORKERS=${WORKERS:-1}
 HOST=${HOST:-0.0.0.0}
 PORT=${PORT:-8080}
@@ -17,4 +19,5 @@ PORT=${PORT:-8080}
 exec gunicorn main:app \
     -w "$WORKERS" \
     -k uvicorn.workers.UvicornWorker \
-    --bind "$HOST:$PORT"
+    --bind "$HOST:$PORT" \
+    --capture-output
