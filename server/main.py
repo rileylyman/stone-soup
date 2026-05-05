@@ -70,9 +70,12 @@ async def post_image(request: Request) -> dict[str, str]:
         raise HTTPException(400)
 
     if len(img.info) != 0:
+        print("metadata exists")
+        print(img.info)
         raise HTTPException(400)
 
     if img.size[0] != 64 or img.size[1] != 64:
+        print("not 64")
         raise HTTPException(400)
 
     rgb = img.convert("RGB")
@@ -85,6 +88,7 @@ async def post_image(request: Request) -> dict[str, str]:
                 found = True
                 break
         if not found:
+            print("not right palette")
             raise HTTPException(400)
 
     stored = StoredImage(png_bytes)
@@ -94,6 +98,7 @@ async def post_image(request: Request) -> dict[str, str]:
 
 @app.get("/images")
 def get_images() -> list[dict[str, object]]:
+    print("hey")
     _purge_expired()
     now = time.monotonic()
     return [
@@ -112,6 +117,11 @@ _GAME_HEADERS = {
     "Cross-Origin-Embedder-Policy": "require-corp",
     "Cache-Control": "no-store",
 }
+
+
+@app.get("/")
+def get_root() -> RedirectResponse:
+    return RedirectResponse(url="/soup/", status_code=301)
 
 
 @app.get("/soup")
