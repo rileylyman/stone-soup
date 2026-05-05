@@ -13,6 +13,7 @@ class FoodHandle:
 	var time_remaining_s: float
 
 var foods: Array[FoodHandle]
+var last_window_size = Vector2i(480, 400)
 
 func _ready() -> void:
 	_periodic_poll()
@@ -85,5 +86,12 @@ func add_food(image: Image) -> Area2D:
 	if image != null:
 		next_food.get_node("Sprite2D").texture = ImageTexture.create_from_image(image)
 	next_food.position = get_viewport_rect().size / 2
-	add_child(next_food)
+	$Food.add_child(next_food)
 	return next_food
+
+func _on_window_check_timer_timeout():
+	if last_window_size != DisplayServer.window_get_size():
+		last_window_size = DisplayServer.window_get_size()
+		for food in $Food.get_children():
+			food.position = get_viewport_rect().size / 2
+		print("Resetting positions..")

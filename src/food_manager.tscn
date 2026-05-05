@@ -4,3 +4,11 @@
 
 [node name="FoodManager" type="Node2D" unique_id=1773176010]
 script = ExtResource("1_chd38")
+
+[node name="WindowCheckTimer" type="Timer" parent="." unique_id=728642858]
+wait_time = 0.1
+autostart = true
+
+[node name="Food" type="Node2D" parent="." unique_id=2089021101]
+
+[connection signal="timeout" from="WindowCheckTimer" to="." method="_on_window_check_timer_timeout"]

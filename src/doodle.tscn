@@ -28,32 +28,35 @@
 [ext_resource type="Texture2D" uid="uid://bwry4r4re6wmu" path="res://sprites/DoneWord.png" id="25_02g7r"]
 [ext_resource type="Texture2D" uid="uid://b01pe036i1ttd" path="res://sprites/BarRed.png" id="26_ojkaw"]
 [ext_resource type="Texture2D" uid="uid://bbga7ni4phksm" path="res://sprites/ErrorWord.png" id="27_fywy1"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_02g7r"]
-allow_unpress = true
+[ext_resource type="Texture2D" uid="uid://bf63u6ydy27sm" path="res://sprites/SendLoading.png" id="29_ojkaw"]
+[ext_resource type="Texture2D" uid="uid://glag5ww5ftal" path="res://sprites/Success.png" id="30_fywy1"]
+[ext_resource type="Texture2D" uid="uid://dpgytpmbxgys4" path="res://sprites/Error.png" id="31_3acqh"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_ojkaw"]
+allow_unpress = true
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_fywy1"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_3acqh"]
-allow_unpress = true
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_x8ffy"]
+allow_unpress = true
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_qlebc"]
-allow_unpress = true
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_leq7c"]
 allow_unpress = true
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_mrhly"]
+allow_unpress = true
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_ssbfq"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_pqhoc"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_i6e1q"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_am0cf"]
 
 [sub_resource type="Animation" id="Animation_4acau"]
 length = 0.001
@@ -91,6 +94,49 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_4acau"),
 &"shake": SubResource("Animation_4vthw")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojkaw"]
+atlas = ExtResource("29_ojkaw")
+region = Rect2(0, 0, 215, 57)
+
+[sub_resource type="Animation" id="Animation_ojkaw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Loading:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 215, 57)]
+}
+
+[sub_resource type="Animation" id="Animation_fywy1"]
+resource_name = "sending"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Loading:texture:region")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 216, 58), Rect2(216, 0, 216, 58), Rect2(432, 0, 216, 58), Rect2(648, 0, 216, 58)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3acqh"]
+_data = {
+&"RESET": SubResource("Animation_ojkaw"),
+&"sending": SubResource("Animation_fywy1")
 }
 
 [node name="Doodle" type="Control" unique_id=171411030 node_paths=PackedStringArray("starting_button")]
@@ -281,57 +327,57 @@ theme_override_constants/separation = 0
 
 [node name="PaletteButton8" parent="JonPalette" unique_id=1364473948 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_02g7r")
+button_group = SubResource("ButtonGroup_ojkaw")
 color = Color(0, 0, 0, 1)
 
 [node name="PaletteButton" parent="JonPalette" unique_id=1950895568 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_ojkaw")
+button_group = SubResource("ButtonGroup_fywy1")
 color = Color(1, 1, 1, 1)
 
 [node name="PaletteButton2" parent="JonPalette" unique_id=1395995767 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_fywy1")
+button_group = SubResource("ButtonGroup_3acqh")
 color = Color(0.74509805, 0.14901961, 0.2, 1)
 
 [node name="PaletteButton5" parent="JonPalette" unique_id=2084868598 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_3acqh")
+button_group = SubResource("ButtonGroup_x8ffy")
 color = Color(0.8784314, 0.43529412, 0.54509807, 1)
 
 [node name="PaletteButton10" parent="JonPalette" unique_id=902168354 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_x8ffy")
+button_group = SubResource("ButtonGroup_qlebc")
 color = Color(0.28627452, 0.23529412, 0.16862746, 1)
 
 [node name="PaletteButton6" parent="JonPalette" unique_id=1490133242 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_qlebc")
+button_group = SubResource("ButtonGroup_leq7c")
 color = Color(0.6431373, 0.39215687, 0.13333334, 1)
 
 [node name="PaletteButton7" parent="JonPalette" unique_id=1950808655 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_leq7c")
+button_group = SubResource("ButtonGroup_mrhly")
 color = Color(0.92156863, 0.5372549, 0.19215687, 1)
 
 [node name="PaletteButton3" parent="JonPalette" unique_id=1011534886 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_mrhly")
+button_group = SubResource("ButtonGroup_ssbfq")
 color = Color(0.96862745, 0.8862745, 0.41960785, 1)
 
 [node name="PaletteButton4" parent="JonPalette" unique_id=149462974 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_ssbfq")
+button_group = SubResource("ButtonGroup_pqhoc")
 color = Color(0.26666668, 0.5372549, 0.101960786, 1)
 
 [node name="PaletteButton11" parent="JonPalette" unique_id=2031565675 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_pqhoc")
+button_group = SubResource("ButtonGroup_i6e1q")
 color = Color(0.6392157, 0.80784315, 0.15294118, 1)
 
 [node name="PaletteButton9" parent="JonPalette" unique_id=579740905 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_i6e1q")
+button_group = SubResource("ButtonGroup_am0cf")
 color = Color(0.19215687, 0.63529414, 0.9490196, 1)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=861444162]
@@ -441,22 +487,17 @@ texture = ExtResource("18_8je6j")
 libraries/ = SubResource("AnimationLibrary_4acau")
 
 [node name="SendBar" type="Control" parent="." unique_id=679647667]
-visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("19_02g7r")
 
 [node name="BarShadow" type="TextureRect" parent="SendBar" unique_id=465375560]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -471,22 +512,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("19_cgy5g")
 
-[node name="BarOutline" type="TextureRect" parent="SendBar" unique_id=330766674]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -150.0
-offset_right = 160.0
-offset_bottom = 150.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("20_a1rfq")
-
 [node name="BarGrey" type="TextureRect" parent="SendBar" unique_id=426524407]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -502,6 +529,7 @@ grow_vertical = 2
 texture = ExtResource("21_4b4dm")
 
 [node name="SendingGrey" type="TextureRect" parent="SendBar" unique_id=1936789038]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -519,6 +547,7 @@ expand_mode = 1
 stretch_mode = 2
 
 [node name="BarBlue" type="TextureRect" parent="SendBar" unique_id=1876001650]
+visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 8
@@ -537,6 +566,7 @@ expand_mode = 1
 stretch_mode = 2
 
 [node name="SendingBlue" type="TextureRect" parent="SendBar" unique_id=509766221]
+visible = false
 clip_contents = true
 layout_mode = 1
 anchors_preset = 8
@@ -553,6 +583,22 @@ grow_vertical = 2
 texture = ExtResource("24_al66c")
 expand_mode = 1
 stretch_mode = 2
+
+[node name="BarOutline" type="TextureRect" parent="SendBar" unique_id=330766674]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -150.0
+offset_right = 160.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_a1rfq")
 
 [node name="DoneWord" type="TextureRect" parent="SendBar" unique_id=2058994939]
 visible = false
@@ -610,6 +656,58 @@ grow_vertical = 2
 texture = ExtResource("27_fywy1")
 expand_mode = 1
 stretch_mode = 2
+
+[node name="Loading" type="TextureRect" parent="SendBar" unique_id=1763243843]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -430.0
+offset_top = -28.5
+offset_right = 430.0
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ojkaw")
+stretch_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SendBar" unique_id=204176256]
+libraries/ = SubResource("AnimationLibrary_3acqh")
+
+[node name="Success" type="TextureRect" parent="SendBar" unique_id=948796735]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.5
+offset_top = -28.5
+offset_right = 107.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("30_fywy1")
+
+[node name="Failure" type="TextureRect" parent="SendBar" unique_id=1799784600]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.5
+offset_top = -28.5
+offset_right = 107.5
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("31_3acqh")
 
 [connection signal="pressed" from="SendToServer" to="SendToServer" method="_on_pressed"]
 [connection signal="color_selected" from="Palette" to="." method="_on_palette_color_selected"]

@@ -12,27 +12,39 @@ signal fill_complete_signal
 @onready var bar_blue_original_width = $BarBlue.size.x
 @onready var sending_blue_original_width = $SendingBlue.size.x
 
+func _ready():
+	$Loading.hide()
+
 func fill():
+	$Loading.show()
+	$Failure.hide()
+	$Success.hide()
+	$AnimationPlayer.play("sending")
+	fill_time = randf_range(1, 2)
 	visible = true
-	$SendingBlue.visible = true
-	$BarRed.visible = false
-	$ErrorWord.visible = false
-	$DoneWord.visible = false
+	#$SendingBlue.visible = true
+	#$BarRed.visible = false
+	#$ErrorWord.visible = false
+	#$DoneWord.visible = false
 
 	t = 0
 	_filling = true
 	fill_complete = false
 
 func success(): 
-	$SendingBlue.visible = false
-	$DoneWord.visible = true
+	$Loading.hide()
+	$Success.show()
+	#$SendingBlue.visible = false
+	#$DoneWord.visible = true
 	await get_tree().create_timer(1.0).timeout
 	visible = false
 
 func fail():
-	$SendingBlue.visible = false
-	$BarRed.visible = true
-	$ErrorWord.visible = true
+	$Loading.hide()
+	$Failure.show()
+	#$SendingBlue.visible = false
+	#$BarRed.visible = true
+	#$ErrorWord.visible = true
 	await get_tree().create_timer(1.0).timeout
 	visible = false
 
