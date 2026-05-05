@@ -50,19 +50,23 @@ async def post_image(request: Request) -> dict[str, str]:
     _purge_expired()
 
     if len(_images) > MAX_IMAGES:
+        print("max images reached")
         raise HTTPException(400)
 
     png_bytes = await request.body()
     if len(png_bytes) > MAX_BYTES:
+        print("max bytes exceeded")
         raise HTTPException(400)
 
     PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
     if not png_bytes.startswith(PNG_MAGIC):
-        raise HTTPException(400, "not a PNG")
+        print("png magic not found")
+        raise HTTPException(400)
 
     try:
         img = Image.open(io.BytesIO(png_bytes))
     except Exception:
+        print("img open failed")
         raise HTTPException(400)
 
     if len(img.info) != 0:
