@@ -50,7 +50,8 @@ def get_images() -> list[dict[str, object]]:
     ]
 
 
-_GAME_BUILD_DIR = Path(__file__).parent / "game-build"
+_DOODLE_DIR = Path(__file__).parent / "game/doodle"
+_SOUP_DIR = Path(__file__).parent / "game/soup"
 _GAME_HEADERS = {
     "Cross-Origin-Opener-Policy": "same-origin",
     "Cross-Origin-Embedder-Policy": "require-corp",
@@ -58,20 +59,40 @@ _GAME_HEADERS = {
 }
 
 
-@app.get("/game")
-def get_game() -> RedirectResponse:
-    return RedirectResponse(url="/game/", status_code=301)
+@app.get("/soup")
+def get_soup() -> RedirectResponse:
+    return RedirectResponse(url="/soup/", status_code=301)
 
 
-@app.get("/game/")
-def get_game_index() -> FileResponse:
-    return FileResponse(_GAME_BUILD_DIR / "stone-soup.html", headers=_GAME_HEADERS)
+@app.get("/doodle")
+def get_doodle() -> RedirectResponse:
+    return RedirectResponse(url="/doodle/", status_code=301)
 
 
-@app.get("/game/{filename:path}")
-def get_game_file(filename: str) -> FileResponse:
-    target = (_GAME_BUILD_DIR / filename).resolve()
-    if not str(target).startswith(str(_GAME_BUILD_DIR.resolve())):
+@app.get("/soup/")
+def get_soup_index() -> FileResponse:
+    return FileResponse(_SOUP_DIR / "index.html", headers=_GAME_HEADERS)
+
+
+@app.get("/doodle/")
+def get_doodle_index() -> FileResponse:
+    return FileResponse(_DOODLE_DIR / "index.html", headers=_GAME_HEADERS)
+
+
+@app.get("/soup/{filename:path}")
+def get_soup_file(filename: str) -> FileResponse:
+    target = (_SOUP_DIR / filename).resolve()
+    if not str(target).startswith(str(_SOUP_DIR.resolve())):
+        raise HTTPException(status_code=403, detail="Forbidden")
+    if not target.is_file():
+        raise HTTPException(status_code=404, detail="File not found")
+    return FileResponse(target, headers=_GAME_HEADERS)
+
+
+@app.get("/doodle/{filename:path}")
+def get_doodle_file(filename: str) -> FileResponse:
+    target = (_DOODLE_DIR / filename).resolve()
+    if not str(target).startswith(str(_DOODLE_DIR.resolve())):
         raise HTTPException(status_code=403, detail="Forbidden")
     if not target.is_file():
         raise HTTPException(status_code=404, detail="File not found")
