@@ -9,4 +9,4 @@ if [ ! -d .venv ]; then
 fi
 
 source .venv/bin/activate
-uvicorn main:app --reload
+uvicorn main:app --reload --port "${PORT:-8000}"
