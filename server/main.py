@@ -54,6 +54,7 @@ _GAME_BUILD_DIR = Path(__file__).parent / "game-build"
 _GAME_HEADERS = {
     "Cross-Origin-Opener-Policy": "same-origin",
     "Cross-Origin-Embedder-Policy": "require-corp",
+    "Cache-Control": "no-transform",
 }
 
 
