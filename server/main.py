@@ -9,7 +9,7 @@ from PIL import Image
 
 app = FastAPI()
 
-IMAGE_TTL_SECONDS = 60 * 60 * 8
+IMAGE_TTL_SECONDS = 60 * 60 * 1
 MAX_BYTES = 10_000
 MAX_IMAGES = 500
 
@@ -128,6 +128,12 @@ def get_doodle() -> RedirectResponse:
 @app.get("/soup/")
 def get_soup_index() -> FileResponse:
     return FileResponse(_SOUP_DIR / "index.html", headers=_GAME_HEADERS)
+
+
+@app.get("/soup/clear")
+def get_soup_clear() -> RedirectResponse:
+    _images.clear()
+    return RedirectResponse(url="/soup/", status_code=301)
 
 
 @app.get("/doodle/")
