@@ -5,8 +5,12 @@ extends TextureButton
 @onready var http_request: HTTPRequest = $HTTPRequest
 
 signal sent(success: bool)
+var _sending := false
 
 func _on_pressed() -> void:
+	if _sending:
+		return
+	_sending = true
 	var image: Image = get_parent().get_image()
 	var png_bytes: PackedByteArray = image.save_png_to_buffer()
 	http_request.request_completed.connect(func(result: int, response_code: int, _headers: PackedStringArray, _body: PackedByteArray):
@@ -28,3 +32,5 @@ func _on_pressed() -> void:
 		get_parent().image_stack.clear()
 	else:
 		await send_bar.fail()
+	
+	_sending = false
