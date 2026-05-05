@@ -50,32 +50,25 @@ async def post_image(request: Request) -> dict[str, str]:
     _purge_expired()
 
     if len(_images) > MAX_IMAGES:
-        print("max images reached")
         raise HTTPException(400)
 
     png_bytes = await request.body()
     if len(png_bytes) > MAX_BYTES:
-        print("max bytes exceeded")
         raise HTTPException(400)
 
     PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
     if not png_bytes.startswith(PNG_MAGIC):
-        print("png magic not found")
         raise HTTPException(400)
 
     try:
         img = Image.open(io.BytesIO(png_bytes))
     except Exception:
-        print("img open failed")
         raise HTTPException(400)
 
     if len(img.info) != 1 or "srgb" not in img.info:
-        print("metadata exists")
-        print(img.info)
         raise HTTPException(400)
 
     if img.size[0] != 64 or img.size[1] != 64:
-        print("not 64")
         raise HTTPException(400)
 
     rgb = img.convert("RGB")
@@ -88,7 +81,6 @@ async def post_image(request: Request) -> dict[str, str]:
                 found = True
                 break
         if not found:
-            print("not right palette")
             raise HTTPException(400)
 
     stored = StoredImage(png_bytes)
@@ -98,7 +90,6 @@ async def post_image(request: Request) -> dict[str, str]:
 
 @app.get("/images")
 def get_images() -> list[dict[str, object]]:
-    print("hey")
     _purge_expired()
     now = time.monotonic()
     return [
