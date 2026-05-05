@@ -2,7 +2,8 @@ class_name FoodManager
 extends Node2D
 
 const Food = preload("res://src/food.tscn")
-const ServerAddr = "http://167.172.15.13/images"
+#const ServerAddr = "http://167.172.15.13/images"
+const ServerAddr = "https://stonesoup.uk/images"
 # const ServerAddr = "http://127.0.0.1:8000/images"
 
 @export var poll_interval := 2.0
