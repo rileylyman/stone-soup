@@ -18,32 +18,37 @@
 [ext_resource type="Texture2D" uid="uid://dlt76yuo57jt" path="res://sprites/Bucket.png" id="14_8je6j"]
 [ext_resource type="Texture2D" uid="uid://cp0r1ouoa8my7" path="res://sprites/Bomb.png" id="16_a1ubm"]
 [ext_resource type="Texture2D" uid="uid://dm54nbx5dqig1" path="res://sprites/Undo.png" id="18_8je6j"]
+[ext_resource type="Texture2D" uid="uid://pvrcjkrajvtk" path="res://sprites/BarShadow.png" id="19_cgy5g"]
+[ext_resource type="Texture2D" uid="uid://2ud143ehmqpy" path="res://sprites/BarOutline.png" id="20_a1rfq"]
+[ext_resource type="Texture2D" uid="uid://0nmwycn07t8j" path="res://sprites/BarGrey.png" id="21_4b4dm"]
+[ext_resource type="Texture2D" uid="uid://dopmoou185vmk" path="res://sprites/SendingGrey.png" id="22_1y112"]
+[ext_resource type="Texture2D" uid="uid://e4dfib6l84s" path="res://sprites/BarBlue.png" id="23_al66c"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_y8a5g"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_02g7r"]
 allow_unpress = true
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_4vthw"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_ojkaw"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_4acau"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_fywy1"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_fgnvj"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_3acqh"]
 allow_unpress = true
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_8je6j"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_x8ffy"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_ehbul"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_qlebc"]
 allow_unpress = true
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_as8c2"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_leq7c"]
 allow_unpress = true
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_3uker"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_mrhly"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_3l3di"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_ssbfq"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_irbfv"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_pqhoc"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_a1ubm"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_i6e1q"]
 allow_unpress = true
 
 [sub_resource type="Animation" id="Animation_4acau"]
@@ -267,57 +272,57 @@ theme_override_constants/separation = 0
 
 [node name="PaletteButton8" parent="JonPalette" unique_id=1364473948 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_y8a5g")
+button_group = SubResource("ButtonGroup_02g7r")
 color = Color(0, 0, 0, 1)
 
 [node name="PaletteButton" parent="JonPalette" unique_id=1950895568 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_4vthw")
+button_group = SubResource("ButtonGroup_ojkaw")
 color = Color(1, 1, 1, 1)
 
 [node name="PaletteButton2" parent="JonPalette" unique_id=1395995767 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_4acau")
+button_group = SubResource("ButtonGroup_fywy1")
 color = Color(0.74509805, 0.14901961, 0.2, 1)
 
 [node name="PaletteButton5" parent="JonPalette" unique_id=2084868598 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_fgnvj")
+button_group = SubResource("ButtonGroup_3acqh")
 color = Color(0.8784314, 0.43529412, 0.54509807, 1)
 
 [node name="PaletteButton10" parent="JonPalette" unique_id=902168354 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_8je6j")
+button_group = SubResource("ButtonGroup_x8ffy")
 color = Color(0.28627452, 0.23529412, 0.16862746, 1)
 
 [node name="PaletteButton6" parent="JonPalette" unique_id=1490133242 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_ehbul")
+button_group = SubResource("ButtonGroup_qlebc")
 color = Color(0.6431373, 0.39215687, 0.13333334, 1)
 
 [node name="PaletteButton7" parent="JonPalette" unique_id=1950808655 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_as8c2")
+button_group = SubResource("ButtonGroup_leq7c")
 color = Color(0.92156863, 0.5372549, 0.19215687, 1)
 
 [node name="PaletteButton3" parent="JonPalette" unique_id=1011534886 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_3uker")
+button_group = SubResource("ButtonGroup_mrhly")
 color = Color(0.96862745, 0.8862745, 0.41960785, 1)
 
 [node name="PaletteButton4" parent="JonPalette" unique_id=149462974 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_3l3di")
+button_group = SubResource("ButtonGroup_ssbfq")
 color = Color(0.26666668, 0.5372549, 0.101960786, 1)
 
 [node name="PaletteButton11" parent="JonPalette" unique_id=2031565675 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_irbfv")
+button_group = SubResource("ButtonGroup_pqhoc")
 color = Color(0.6392157, 0.80784315, 0.15294118, 1)
 
 [node name="PaletteButton9" parent="JonPalette" unique_id=579740905 instance=ExtResource("5_sqomu")]
 layout_mode = 2
-button_group = SubResource("ButtonGroup_a1ubm")
+button_group = SubResource("ButtonGroup_i6e1q")
 color = Color(0.19215687, 0.63529414, 0.9490196, 1)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=861444162]
@@ -411,6 +416,100 @@ texture = ExtResource("18_8je6j")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1760591565]
 libraries/ = SubResource("AnimationLibrary_4acau")
+
+[node name="SendBar" type="Control" parent="." unique_id=679647667]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BarShadow" type="TextureRect" parent="SendBar" unique_id=465375560]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -150.0
+offset_right = 160.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_cgy5g")
+
+[node name="BarOutline" type="TextureRect" parent="SendBar" unique_id=330766674]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -150.0
+offset_right = 160.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_a1rfq")
+
+[node name="BarGrey" type="TextureRect" parent="SendBar" unique_id=426524407]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -150.0
+offset_right = 160.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("21_4b4dm")
+
+[node name="SendingGrey" type="TextureRect" parent="SendBar" unique_id=1936789038]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -150.0
+offset_right = 160.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("22_1y112")
+expand_mode = 1
+stretch_mode = 2
+
+[node name="BarBlue" type="TextureRect" parent="SendBar" unique_id=1876001650]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -150.0
+offset_right = 160.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("23_al66c")
+expand_mode = 1
+stretch_mode = 2
 
 [connection signal="pressed" from="SendToServer" to="SendToServer" method="_on_pressed"]
 [connection signal="color_selected" from="Palette" to="." method="_on_palette_color_selected"]
