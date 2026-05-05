@@ -136,7 +136,7 @@ def get_soup_clear() -> RedirectResponse:
     for img in _images.values():
         img.expires_at = now
 
-    return RedirectResponse(url="/soup/", status_code=301)
+    return RedirectResponse(url="/soup/", status_code=302)
 
 
 @app.get("/doodle/")
