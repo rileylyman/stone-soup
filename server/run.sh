@@ -9,4 +9,6 @@ if [ ! -d .venv ]; then
 fi
 
 source .venv/bin/activate
+
+export PYTHONUNBUFFERED=1
 uvicorn main:app --reload --host 0.0.0.0 --port "${PORT:-8000}"
