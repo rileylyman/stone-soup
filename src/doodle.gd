@@ -58,6 +58,8 @@ func _process(_delta: float) -> void:
 			has_updated_canvas = false
 			if canvas.texture != null:
 				image_stack.push_back(canvas.texture.get_image())
+	if Input.is_action_just_pressed("undo"):
+		_on_undo_tool_tool_selected(-1)
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if current_tool == "Bucket":
 			return
@@ -143,7 +145,6 @@ func _draw_at_sz(x: int, y: int, color: Color, sz: int) -> void:
 			if (i == 0 and j == sz-1) or (i == sz-1 and j == 0):
 				continue
 			_draw_at(x + i - int(sz / 2.0), y + j - int(sz / 2.0), color)
-			
 
 func get_image() -> Image:
 	var image := Image.new()
@@ -211,3 +212,6 @@ func _on_undo_tool_tool_selected(_tool_id):
 		canvas.texture = ImageTexture.create_from_image(last_image)
 	else:
 		_reset_canvas()
+
+func _on_send_bar_send_successful():
+	_reset_canvas()

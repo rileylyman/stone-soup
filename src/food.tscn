@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b8ilh777086ue" path="res://sprites/Potato.png" id="1_3wdjq"]
 [ext_resource type="Script" uid="uid://d2g207tga4pvj" path="res://src/food.gd" id="1_dw37r"]
+[ext_resource type="Material" uid="uid://bkgthr55vm0mu" path="res://src/shaders/ColorShader.tres" id="3_smy3p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dw37r"]
 radius = 20.09975
@@ -13,8 +14,8 @@ script = ExtResource("1_dw37r")
 texture = ExtResource("1_3wdjq")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1212213036]
-modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
+material = ExtResource("3_smy3p")
 position = Vector2(2, 3)
 texture = ExtResource("1_3wdjq")
 

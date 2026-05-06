@@ -15,7 +15,7 @@ func _ready():
 
 func _process(delta):
 	rotate(rotate_speed * delta)
-	#$Shadow.rotate(rotate_speed * delta)
+	# $Shadow.rotate(rotate_speed * delta)
 	position += direction * speed * delta
 	if position.x < -buffer or position.x > get_viewport_rect().size.x + buffer:
 		direction.x *= -1

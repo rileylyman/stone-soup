@@ -8,6 +8,7 @@ var _filling := false
 var fill_complete := false
 
 signal fill_complete_signal
+signal send_successful
 
 @onready var bar_blue_original_width = $BarBlue.size.x
 @onready var sending_blue_original_width = $SendingBlue.size.x
@@ -34,6 +35,8 @@ func fill():
 func success(): 
 	$Loading.hide()
 	$Success.show()
+	send_successful.emit()
+	$AnimationPlayer.play("fade_out")
 	#$SendingBlue.visible = false
 	#$DoneWord.visible = true
 	await get_tree().create_timer(1.0).timeout
@@ -42,6 +45,7 @@ func success():
 func fail():
 	$Loading.hide()
 	$Failure.show()
+	$AnimationPlayer.play("fade_out")
 	#$SendingBlue.visible = false
 	#$BarRed.visible = true
 	#$ErrorWord.visible = true
@@ -51,7 +55,6 @@ func fail():
 func _process(delta: float) -> void:
 	if _filling:
 		t = clamp(t + delta / fill_time, 0.0, 1.0)
-
 		$BarBlue.size.x = bar_blue_original_width * t
 		$SendingBlue.size.x = sending_blue_original_width * t
 
