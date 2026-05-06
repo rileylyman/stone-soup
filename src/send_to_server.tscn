@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://jdsihoq8qlb0"]
+
+[ext_resource type="Texture2D" uid="uid://j5dxevxey322" path="res://sprites/send-normal.png" id="1_qrn6h"]
+[ext_resource type="Texture2D" uid="uid://purst04x7pjx" path="res://sprites/send-pressed.png" id="2_l0lh1"]
+[ext_resource type="Texture2D" uid="uid://o7w870cwrodt" path="res://sprites/send-disabled.png" id="3_w8caw"]
+[ext_resource type="Script" uid="uid://ciyu14jyf0602" path="res://src/send_to_server_button.gd" id="4_gng4m"]
+
+[node name="SendToServer" type="TextureButton" unique_id=855151815]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -57.0
+offset_top = 9.0
+offset_right = 57.0
+offset_bottom = 57.0
+grow_horizontal = 2
+mouse_default_cursor_shape = 2
+disabled = true
+texture_normal = ExtResource("1_qrn6h")
+texture_pressed = ExtResource("2_l0lh1")
+texture_hover = ExtResource("2_l0lh1")
+texture_disabled = ExtResource("3_w8caw")
+stretch_mode = 4
+script = ExtResource("4_gng4m")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=782096216]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1455244613]
+visible = false
+modulate = Color(0.18431373, 0.28235295, 0.30588236, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 116.0
+offset_bottom = 50.0
+texture = ExtResource("1_qrn6h")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

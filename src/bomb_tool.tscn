@@ -14,5 +14,15 @@ toggle_mode = false
 script = ExtResource("3_xmw26")
 tool_name = "Bomb"
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2133418845]
+modulate = Color(0.18431373, 0.28235295, 0.30588236, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 82.0
+offset_bottom = 76.0
+texture = ExtResource("2_g3uhy")
+
 [connection signal="pressed" from="." to="." method="_on_pressed"]
 [connection signal="toggled" from="." to="." method="_on_toggled"]

@@ -1,7 +1,7 @@
 extends Control
 
 var _color: Color = Color(0, 0, 0)
-@onready var canvas: TextureRect = $Canvas
+@onready var canvas: Canvas = $Canvas
 
 var data_size_x: int = 64
 var data_size_y: int = 64
@@ -23,11 +23,13 @@ var image_stack = []
 
 func _ready() -> void:
 	_reset_canvas()
-	for pb : PaletteButton in $JonPalette.get_children():
+	for pb : PaletteButton in $JonPaletteWide.get_children():
+		pb.color_picked.connect(_on_palette_color_selected)
+	for pb : PaletteButton in $JonPaletteNarrow.get_children():
 		pb.color_picked.connect(_on_palette_color_selected)
 	starting_button.button_pressed = true
 	_color = starting_button.color
-	$PencilTool.button_pressed = true
+	$ToolsWide/PencilTool.button_pressed = true
 
 func _reset_canvas():
 	data = []
@@ -39,11 +41,29 @@ func _reset_canvas():
 	var image := Image.new()
 	image.set_data(data_size_x, data_size_y, false, Image.FORMAT_RGBA8, data)
 	canvas.texture = ImageTexture.create_from_image(image)
-	$SendToServer.disabled = true
-	$SendToServer.mouse_default_cursor_shape = CURSOR_ARROW
+	$SendToServerWide.disabled = true
+	$SendToServerWide.mouse_default_cursor_shape = CURSOR_ARROW
+	$SendToServerNarrow.disabled = true
+	$SendToServerNarrow.mouse_default_cursor_shape = CURSOR_ARROW
 
 var draw_points = []
 func _process(_delta: float) -> void:
+	var scr_size := get_viewport_rect().size
+	var mobile_mode := scr_size.y > 680
+	$ToolsNarrow.visible = mobile_mode
+	$ToolsWide.visible = not mobile_mode
+	$JonPaletteNarrow.visible = mobile_mode
+	$JonPaletteWide.visible = not mobile_mode
+	$SendToServerNarrow.visible = mobile_mode
+	$SendToServerWide.visible = not mobile_mode
+	$SendBar.scale = Vector2(2.0, 2.0) if mobile_mode else Vector2(1.0, 1.0)
+	if mobile_mode:
+		canvas.new_size(int(scr_size.x) - 100, int(scr_size.x) - 100)
+	else:
+		canvas.new_size(256, 256)
+	scale_x = canvas.size.x / data_size_x
+	scale_y = canvas.size.y / data_size_y
+
 	var x = _get_canvas_mouse_x()
 	var y = _get_canvas_mouse_y()
 	if Input.is_action_just_pressed("left_click") and current_tool == "Bucket":
@@ -135,9 +155,11 @@ func _get_color_at(x, y):
 	return Color(r, g, b, a)
 
 func _draw_at_sz(x: int, y: int, color: Color, sz: int) -> void:
-	if (x >= 0 and x < data_size_x) and (y >= 0 and y <= data_size_y) and $SendToServer.disabled:
-		$SendToServer.disabled = false
-		$SendToServer.mouse_default_cursor_shape = CURSOR_POINTING_HAND
+	if (x >= 0 and x < data_size_x) and (y >= 0 and y <= data_size_y):
+		$SendToServerWide.disabled = false
+		$SendToServerWide.mouse_default_cursor_shape = CURSOR_POINTING_HAND
+		$SendToServerNarrow.disabled = false
+		$SendToServerNarrow.mouse_default_cursor_shape = CURSOR_POINTING_HAND
 	for i in range(sz):
 		for j in range(sz):
 			if i == 0 and j == 0 or (i == sz-1 and j == sz-1):
@@ -195,8 +217,10 @@ func _on_bomb_tool_tool_selected(_tool_id):
 	var image := Image.new()
 	image.set_data(data_size_x, data_size_y, false, Image.FORMAT_RGBA8, data)
 	canvas.texture = ImageTexture.create_from_image(image)
-	$SendToServer.disabled = true
-	$SendToServer.mouse_default_cursor_shape = CURSOR_ARROW
+	$SendToServerWide.disabled = true
+	$SendToServerWide.mouse_default_cursor_shape = CURSOR_ARROW
+	$SendToServerNarrow.disabled = true
+	$SendToServerNarrow.mouse_default_cursor_shape = CURSOR_ARROW
 
 func _on_undo_tool_tool_selected(_tool_id):
 	if !image_stack.is_empty():
